@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       }
     });
 
-    const result = await getLinkStatus(test);
+    const result = await getLinkStatus(test?.link);
 
     const updateTest = await prisma.test.update({
       where: {

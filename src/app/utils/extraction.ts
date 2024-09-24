@@ -55,7 +55,7 @@ export const extract = async (data: any) => {
 
 export const getLinkStatus = async (links: any) => {
     // Filter out empty href/src values and check for status codes
-    links = await Promise.all(
+    let result = await Promise.all(
         links
             .filter((link:any) => link.href) // Filter out empty href
             .map(async (link:any) => {
@@ -63,11 +63,11 @@ export const getLinkStatus = async (links: any) => {
                 return { ...link, status };
             })
     );
-    return links;
+    return result;
 }
 
 export const getImageStatus = async (images: any) => {
-    images = await Promise.all(
+    let result = await Promise.all(
         images
             .filter((img:any) => img.src) // Filter out empty src
             .map(async (img:any) => {
@@ -75,5 +75,5 @@ export const getImageStatus = async (images: any) => {
                 return { ...img, status };
             })
     );
-    return images;
+    return result;
 }

@@ -6,6 +6,52 @@ export default function Home() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
 
+  const getHttpLinkStatus = async(id:any)=>{
+    try {
+      const response = await fetch("/api/link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to process");
+      }
+
+      const data = await response.json();
+      console.log("Success:", data);
+      // Handle success (e.g., display a message or process response)
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle error
+    }
+  }
+
+  const getHttpImageStatus = async(id:any)=>{
+    try {
+      const response = await fetch("/api/image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to process");
+      }
+
+      const data = await response.json();
+      console.log("Success:", data);
+      // Handle success (e.g., display a message or process response)
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle error
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -43,6 +89,16 @@ export default function Home() {
 
       const data = await response.json();
       console.log("Success:", data);
+
+      if (data){
+        console.log("data.data.id", data.data.id)
+        const link = await getHttpLinkStatus(data.data.id);
+        console.log("Success Link:", link);
+
+        const image = await getHttpImageStatus(data.data.id);
+        console.log("Success Image:", image);
+      }
+      
       // Handle success (e.g., display a message or process response)
     } catch (error) {
       console.error("Error:", error);

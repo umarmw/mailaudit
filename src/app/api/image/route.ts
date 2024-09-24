@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       }
     });
 
-    const result = await getImageStatus(test);
+    const result = await getImageStatus(test?.image);
 
     const updateTest = await prisma.test.update({
       where: {
