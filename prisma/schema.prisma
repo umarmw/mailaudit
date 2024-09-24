@@ -14,10 +14,10 @@ datasource db {
 }
 
 model Test {
-  id           Int    @id @default(autoincrement())
-  url          String
-  link_report  Json
-  image_report Json
-  metadata     Json
-  createdAt    DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  url       String
+  link      Json
+  image     Json
+  metadata  Json
+  createdAt DateTime @default(now())
 }
